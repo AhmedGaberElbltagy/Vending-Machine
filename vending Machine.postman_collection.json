@@ -1,0 +1,344 @@
+{
+	"info": {
+		"_postman_id": "a30e220e-6975-43ce-8bea-ad394a0e55c2",
+		"name": "vending Machine",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:3000/reset/6241ed1ad34b4385135fd550",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/reset/6241ed1ad34b4385135fd550",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"reset",
+						"6241ed1ad34b4385135fd550"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/deleteProduct/6241e72a1a9d3cbbe30a027a",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic2VsbGVyIiwiaWQiOiI2MjQxZGZjOWFjN2ZiODE2NTJmNzNlMGUiLCJpYXQiOjE2NDg0ODYyNzB9.zRqU1GezU4PBxPVgRqT75HkQKGXeFuMOI0hKZ1-cngo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/deleteProduct/6241e72a1a9d3cbbe30a027a",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"deleteProduct",
+						"6241e72a1a9d3cbbe30a027a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/signIn",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\":\"mohamedmagdy\",\r\n    \"password\":\"1234\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/signIn",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"signIn"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/updateProduct/6241e1d31fa533355fd31ac4",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYnV5ZXIiLCJpYXQiOjE2NDg0ODQ2ODh9.UfNg8nVbPHIkseYrwIYOepBq4ZgUDnP1GnX1ojlSH80",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amountAvaliable\":12,\r\n    \"cost\":12,\r\n    \"productName\":\"shoes\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/updateProduct/6241e1d31fa533355fd31ac4",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"updateProduct",
+						"6241e1d31fa533355fd31ac4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/user/deposite",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYnV5ZXIiLCJpYXQiOjE2NDg0ODEwNjF9.W6diEtXoUeC932pnD0dITgCNKvbftZc6BxyzM6FBI_I",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"userName\":\"ahmedgaber\",\r\n   \"password\":\"1234\",\r\n   \"deposit\":56\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/user/deposite",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"deposite"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\":\"rahmaaaaa\",\r\n    \"password\":\"1234\",\r\n    \"role\":\"buyer\",\r\n    \"deposit\":\"300\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/Register",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"Register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/signIn",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\":\"rahma\",\r\n    \"password\":\"1234\",\r\n    \"role\":\"buyer\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/signIn",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"signIn"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/buy/6241e72a1a9d3cbbe30a027a",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYnV5ZXIiLCJpZCI6IjYyNDFlZDFhZDM0YjQzODUxMzVmZDU1MCIsImRlcG9zaXRlIjozMDAsImlhdCI6MTY0ODQ4NzcyNH0.AHsUavxYSjcL1dD24wcIlYXNGnZJ4PPQ4xHrBdL_J2o",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\":2\r\n\r\n \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/buy/6241e72a1a9d3cbbe30a027a",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"buy",
+						"6241e72a1a9d3cbbe30a027a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/adduser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"role\":\"buyer\",\r\n    \"userName\":\"rahma\",\r\n    \"password\":\"12121212\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/adduser",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"adduser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/AllProducts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDgxNTEyOTd9.2gAepfLKh4CMbpGAwiEQbLk6lGJM4H-51wHlSkFfC9Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/AllProducts",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"AllProducts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/addProduct",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYnV5ZXIiLCJpZCI6IjYyNDFjZDEyYzU0OTE0NjljYTM0MDBkMCIsImlhdCI6MTY0ODQ4NTU3OH0.phtNJfj2nKL947dsJcDaUHzRj3_cUFBENSNSitrrego",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\":\"ahmedgaber\",\r\n    \"password\":\"1234\",\r\n    \"deposit\":\"5\"\r\n    \r\n\r\n    \r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/Register",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"Register"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
