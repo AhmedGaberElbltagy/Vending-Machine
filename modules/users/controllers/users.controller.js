@@ -1,4 +1,4 @@
-const User = require("../Model/user.model");
+const User = require("../../../Database/Models/users.model")
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -6,28 +6,44 @@ const jwt = require("jsonwebtoken");
 
 
 const adduser = async (req, res) => {
-    const { userName, password, deposit} = req.body;
+    const { userName, password, deposit,role} = req.body;
     bcrypt.hash(password, 5, async function (err, hash) {
      const user = await User.insertMany({ userName, password: hash,deposit ,role })
-        res.json({message:"Register successfully",token})
+        res.json({message:"user Added",user})
     })
 }
 
-const getusers = async (req, res) => {
-    let data = await User.find({}).select("-password"); 
-    res.json({ message: "success", data })
+const Getusers = async (req, res) => {
+    if (req.user.role =="admin") {
+     data = await User.find({}).select("-password"); //show all the data of the users
+     res.json({ message: "success", data })
+    }else{
+        data = await User.findOne({email:req.user.email})//only view user information
+        res.send("you can only see your information")
+    }
 }
 
 const updateuser = async (req, res) => {
-    const { id } = req.params;
-    await User.updateOne({ _id: id })
-    res.send("updated")
+    const {id} = req.params;
+    const userRole = await User.findById({_id:req.user.id})
+    if (userRole.role == "admin" ) {
+       const updateduser = await User.findByIdAndUpdate({ _id: id},
+        {userName:req.body.userName,password:req.body.password})
+        res.json({message:"updated",updateduser})
+    }else{
+        res.send("your not allowed to update")
+    }
 }
 
 const deleteuser = async (req, res) => {
     const { id } = req.params;
+    const userRole = await User.findById({_id:req.user.id})
+    if (userRole.role =="admin") {
     await User.deleteOne({ _id: id })
     res.send("deleted");
+    }else{
+        res.send("your not allowed to delete ")
+    }
 }
 
 const coin = [5,10,20,50,100]
@@ -57,18 +73,73 @@ const deposite = async(req,res)=>{
                 }
     }
 }
-const reset =async (req,res)=>{
 
-    const { id } = req.params;
-    const userValid = User.findById(id)
-    if (!userValid) {
-        res.send("no such username")
-    }else{
-        await User.findOneAndUpdate(id,{deposit:0})
-    res.send("deposite is resets");
+const reset=async (req,res)=>{
+    const {userName,password}= req.body;
+    try {
+        let userValid= await User.findOne({userName})
+        if (!userValid) {
+            res.send("no userName exist")
+        }
+        else{
+            const match = await bcrypt.compare(password,userValid.password);
+            if (match == true ) {    
+                const resetDeposite = 0;
+                let ahmed =userValid.deposit;
+                await User.replaceOne({userName:userValid.userName},{deposit:0,userName,role:userValid.role,
+                    password:userValid.password})
+                res.send("deposite reset")
+            }else{
+
+                res.send("wrong password")
+            }
+        }
+    } catch (error) {
+        res.json({Message:"error",error})
+        console.log(error);
     }
+}
+const Register =async(req,res)=>{
+    const {userName,password,deposit,role}= req.body;
+    try {
+        const user =await User.findOne({userName})
+        if (user) {
+            res.send("this userName is already exist")
+        }else{
+            bcrypt.hash(password, 5, async function (err, hash) {
+                await User.insertMany({ userName,password: hash,deposit,role })
+                
+                res.send("Register successfully")
+            })
+        }
+    } catch (error) {
+        res.send("something wrong")
+        console.log(error);
+    }
+}
+const signIn =async (req,res)=>{
+    const {userName,password,role}= req.body;
+    try {
+        let userValid= await User.findOne({userName})
+        if (!userValid) {
+            res.send("no userName exist")
+        }
+        else{
+            const match = await bcrypt.compare(password,userValid.password);
+            if (match == true ) {
+
+            var token = jwt.sign({ role:userValid.role,id:userValid.id,deposite:userValid.deposit, }, 'shhhhh');
     
+             res.json({Message:"login successful",token})
+            }else{
+                res.send("wrong password")
+            }
+        }
+    } catch (error) {
+        res.json({Message:"error",error})
+    }
 }
 
-module.exports ={adduser,updateuser,deleteuser,getusers,deposite,reset};
+
+module.exports ={adduser,updateuser,deleteuser,Getusers,deposite,reset,Register,signIn};
 

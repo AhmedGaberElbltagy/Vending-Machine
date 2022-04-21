@@ -1,5 +1,5 @@
-const Product = require("../model/products.model");
-const User = require("../../users/Model/user.model")
+const Product = require("../../../Database/Models/products.model");
+const User = require("../../../Database/Models/users.model")
 const jwt = require("jsonwebtoken");
 
 

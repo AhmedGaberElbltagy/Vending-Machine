@@ -2,7 +2,7 @@ const app = require("express").Router();
 
 const {addProduct,AllProducts,updateProduct,deleteProduct, buy}=require("../controllers/products.controller")
 
-const isAuth = require("../../users/config/isAuthorized");
+const isAuth = require("../../../Middleware/Authentication");
 
 app.get("/AllProducts",AllProducts)
 app.post("/addProduct",isAuth(),addProduct)
