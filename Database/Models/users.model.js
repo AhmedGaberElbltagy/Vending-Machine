@@ -5,7 +5,7 @@ const usersSchema =
         userName: { type: String },
         password: { type: String },
         deposit: { type: Number },
-        role:{type:String}
+        role:{type:String, default:"user"}
     })
 
 const User = mongoose.model("users",usersSchema);

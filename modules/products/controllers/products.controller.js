@@ -4,38 +4,52 @@ const jwt = require("jsonwebtoken");
 
 
 const addProduct = async (req, res) => {
-    const {amountAvaliable,cost,productName} = req.body;
-    await Product.insertMany({ amountAvaliable,cost,productName,sellerId:req.user.id})
-    res.json({message:"added"})
+    const {amount,cost,name} = req.body;
+    const product = await Product.insertMany({
+        amountAvaliable:amount,
+        cost,
+        productName:name,
+        sellerId:req.user.id
+    })
+    res.status(201).json({message:"Product added",product})
+}
+const GetProduct =async(req,res)=>{
+    const productId = req.params.id 
+    let product = await Product.findById(productId)
+    res.status(200).json({message:"Done",product})
 }
 
+const GetProducts = async (req, res) => {
+    let Products = await Product.find({}).then({}) 
+    if (Products == null) return
 
-const AllProducts = async (req, res) => {
-     data = await Product.find({}); 
-    res.json({ message: "AllProducts", data })
+    res.status(200).json({ message: "AllProducts", Products })
 }
 
 const updateProduct = async (req, res) => {
-    const { id } = req.params;
-    let product = await Product.findById(id)
+    const productId = req.params.id
+    let product = await Product.findById(productId)
     if (product.sellerId == req.user.id) {
-        await Product.findByIdAndUpdate(id,{amountAvaliable:req.body.amountAvaliable,
-            cost:req.body.cost, productName:req.body.productName,
+        await Product.findByIdAndUpdate({_id:productId},
+            {
+            amountAvaliable:req.body.amountAvaliable,
+            cost:req.body.cost,
+            productName:req.body.name,
         })
-        res.send("updated")
+        res.status(202).send("updated")
     }else{
-        res.send("you are not authorized")
+        res.status(401).send("you are not authorized")
     }
 }
 
 const deleteProduct = async (req, res) => {
-    const { id } = req.params;
-    let product = await Product.findById(id)
+    const productId = req.params.id;
+    let product = await Product.findById(productId)
     if (product.sellerId == req.user.id) {
-        await Product.findOneAndDelete({id})
-        res.send("deleted");
+        await Product.findOneAndDelete({productId})
+        res.status(201).send("deleted");
     }else{
-        res.send("you are not Authorized")
+        res.status(401).send("you are not Authorized")
     }   
 }
 
@@ -61,4 +75,4 @@ const buy =async (req,res)=>{
     }
 }
 
-module.exports ={ addProduct,AllProducts,updateProduct,deleteProduct,buy};
+module.exports ={ addProduct,GetProducts,GetProduct,updateProduct,deleteProduct,buy};

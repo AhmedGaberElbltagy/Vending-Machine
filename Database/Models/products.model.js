@@ -1,7 +1,7 @@
 
 const mongoose = require("mongoose");
 
-const productSchema =
+const ProductSchema =
     mongoose.Schema({
         amountAvaliable: 
         { type:Number
@@ -10,12 +10,11 @@ const productSchema =
         { type:Number ,
         },
         productName: 
-        { 
-            type: String,
-         },
+        { type: String,   
+        },
          sellerId :{type: mongoose.Schema.Types.ObjectId, ref:'user'},
-    })
+        })
 
-const product = mongoose.model("products",productSchema);
+const product = mongoose.model("products",ProductSchema);
 module.exports =product;
     
