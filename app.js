@@ -1,17 +1,17 @@
 const express = require("express");
-const router = express();
+const app = express();
 require('dotenv').config()
+const Port = process.env.PORT
+
+app.use(express.json());
+
+const{ProductsRoutes,usersRoutes} = require("./Router/router")
+app.use(ProductsRoutes,usersRoutes);
+
+const connection = require("./Database/connection")();
 
 
-router.use(express.json());
 
-const{ProductsRoutes,usersRoutes} =require("./Router/router")
-router.use(ProductsRoutes,usersRoutes);
-
-const connection = require("./Database/connection");
-connection();
-
-
-const server =router.listen(process.env.PORT,()=>{
-console.log(`server is running on port ${process.env.PORT}`)})
+app.listen(process.env.PORT,() => {
+console.log(`server is running on port ${Port}`)})
 
